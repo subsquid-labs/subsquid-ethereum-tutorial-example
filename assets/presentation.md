@@ -22,7 +22,7 @@ slideOptions:
     }
 </style>
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/cover_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/cover_bg.png" -->
 
 <!-- ![](https://i.imgur.com/Z4Jt5vh.png) -->
 # Native EVM indexing
@@ -34,7 +34,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Greetings 👋
 
@@ -49,7 +49,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
   
 ## Web2 data solutions
 
@@ -57,7 +57,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
   
 ## Web2 data solutions
 
@@ -68,7 +68,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
   
 ## Blockchain data problems
 
@@ -80,7 +80,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Modular architecture
 
@@ -88,7 +88,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Monolith vs modular
 
@@ -101,7 +101,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Monolith vs modular
 
@@ -114,7 +114,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Archives
 
@@ -122,7 +122,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Archives
 
@@ -134,7 +134,7 @@ https://hackmd.io/@RaekwonIII/native-ethereum-workshop
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Archives
 
@@ -153,7 +153,7 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # squids
 
@@ -161,7 +161,7 @@ Note:
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # squids
 
@@ -169,7 +169,7 @@ Note:
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # squids
 
@@ -181,7 +181,7 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Built for devs
 
@@ -193,7 +193,7 @@ It's much easier to test, break things, start, stop the server
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Built for devs
 
@@ -206,7 +206,7 @@ Build and deploy production-ready APIs within *hours*
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Built for devs
 
@@ -214,7 +214,7 @@ Build and deploy production-ready APIs within *hours*
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Built for devs
 
@@ -222,7 +222,7 @@ Build and deploy production-ready APIs within *hours*
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Codegen
 
@@ -238,7 +238,7 @@ type Owner @entity {
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Codegen
 
@@ -269,7 +269,7 @@ Easier to define entities as a schema, code is built automatically
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # EVM Typegen
 
@@ -277,7 +277,7 @@ Easier to define entities as a schema, code is built automatically
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 ## ABI deserialization
 
@@ -1573,7 +1573,7 @@ Easier to define entities as a schema, code is built automatically
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 ## ABI deserialization
 
@@ -1613,7 +1613,7 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Resources
 
@@ -1625,13 +1625,13 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Let’s get coding…🦑
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 ## Goal: [Exosama](https://exosama.com/) tracker
 
@@ -1646,7 +1646,7 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1669,7 +1669,7 @@ cd squid-ethereum-template && npm i
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1724,7 +1724,7 @@ type Transfer @entity {
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1739,7 +1739,7 @@ make codegen
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1774,7 +1774,7 @@ export class Owner {
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1793,7 +1793,7 @@ npx squid-evm-typegen --abi src/abi/exo.json --output src/abi/exo.ts
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -1830,7 +1830,7 @@ export async function getOrCreateContractEntity(store: Store): Promise<Contract>
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -2024,7 +2024,7 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -2040,7 +2040,7 @@ make up
 
 ----
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -2055,7 +2055,7 @@ Note:
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -2082,7 +2082,7 @@ make migration
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 <!-- .slide: class="smol" -->
 <!-- .slide: class="left" -->
@@ -2107,7 +2107,7 @@ make serve
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 ## Welcome to Subsquid, Ethereum! 🎉
 
@@ -2117,7 +2117,7 @@ This project is available in our [Aquarium](https://app.subsquid.io/aquarium/eth
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 ### What's next?
 
@@ -2125,7 +2125,7 @@ This project is available in our [Aquarium](https://app.subsquid.io/aquarium/eth
 
 ---
 
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/master/assets/base_bg.png" -->
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
 # Thank you 🦑
 
