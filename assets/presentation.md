@@ -2117,7 +2117,7 @@ make serve
 
 ## Welcome to Subsquid, Ethereum! 🎉
 
-![](https://media.giphy.com/media/KgZtmd3iI1HoVIBnFf/giphy.gif)
+![](https://media.giphy.com/media/UK6iCwlyhtCoygMot5/giphy.gif)
 
 This project is available in our [Aquarium](https://app.subsquid.io/aquarium/ethereum-workshop)
 
@@ -2141,6 +2141,6 @@ Subsquid SDK allows extreme flexibility. We ingest blocks, extract data, you dec
 Follow the project on GitHub
 https://github.com/subsquid/squid
 
-![](https://media.giphy.com/media/SVz8HyYrXdJyE/giphy.gif)
+![](https://media.giphy.com/media/rzCb3XwgyZLI58aWFD/giphy.gif)
 
 Give us a ⭐, more Alpha coming soon™️
