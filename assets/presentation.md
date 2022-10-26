@@ -2022,6 +2022,27 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 
 ```
 
+Note:
+
+Remember to comment out `tokenUri` fetch, as an example
+
+----
+
+<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
+
+<!-- .slide: class="smol" -->
+<!-- .slide: class="left" -->
+
+# Ethereum Mainnet RPC endpoint
+
+We need set the `ETHEREUM_MAINNET_WSS` env variable value to a valid WSS endpoint for an Ethereum RPC node. You can use [EthereumNodes](https://ethereumnodes.com/) to find one.
+
+Note:
+
+`wss://mainnet.infura.io/ws/v3/2a1be98f319e4b059b85f853a140b315`
+
+Remember to comment out `tokenUri` fetch, as an example
+
 ---
 
 <!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
@@ -2037,21 +2058,6 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 ```bash
 make up
 ```
-
-----
-
-<!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
-
-<!-- .slide: class="smol" -->
-<!-- .slide: class="left" -->
-
-# ETHEREUM_MAINNET_WSS env variable
-
-We need to add a valid WSS endpoint for an Ethereum RPC node. Can use [EthereumNodes](https://ethereumnodes.com/) to find one.
-
-Note:
-
-`wss://mainnet.infura.io/ws/v3/2a1be98f319e4b059b85f853a140b315`
 
 ---
 
@@ -2119,9 +2125,11 @@ This project is available in our [Aquarium](https://app.subsquid.io/aquarium/eth
 
 <!-- .slide: data-background="https://github.com/RaekwonIII/ethereum-workshop/raw/main/assets/base_bg.png" -->
 
-### What's next?
+## What's next?
 
-## Pick a ~~card~~ contract, any ~~card~~ contract! 🃏🪄
+#### Pick a ~~card~~ contract, any ~~card~~ contract! 🃏🪄
+
+Subsquid SDK allows extreme flexibility. We ingest blocks, extract data, you decide how to process and index it.
 
 ---
 
@@ -2130,9 +2138,9 @@ This project is available in our [Aquarium](https://app.subsquid.io/aquarium/eth
 # Thank you 🦑
 
 
-Follow the project on GitHub, more Alpha coming soon™️
+Follow the project on GitHub
 https://github.com/subsquid/squid
 
 ![](https://media.giphy.com/media/SVz8HyYrXdJyE/giphy.gif)
 
-Give us a ⭐, would you?
+Give us a ⭐, more Alpha coming soon™️
