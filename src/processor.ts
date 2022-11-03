@@ -14,7 +14,7 @@ const processor = new EvmBatchProcessor()
   .setBlockRange({ from: 15584000 })
   .setDataSource({
     chain: process.env.ETHEREUM_MAINNET_WSS,
-    archive: 'https://eth-test.archive.subsquid.io',
+    archive: 'https://eth.archive.subsquid.io',
   })
   .addLog(contractAddress, {
     filter: [[exo.events["Transfer(address,address,uint256)"].topic]],
@@ -139,7 +139,7 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 
     let token = tokens.get(tokenIdString);
 
-    let tokenURI
+    let tokenURI = "";
     try {
       tokenURI = await contract.tokenURI(BigNumber.from(transferData.tokenId)) 
     } catch (error) {
