@@ -7,7 +7,7 @@ import {
   getOrCreateContractEntity,
 } from "./contract";
 import { Owner, Token, Transfer } from "./model";
-import * as exo from "./abi/exo";
+import { events, Contract } from "./abi/exo";
 
 const database = new TypeormDatabase();
 const processor = new EvmBatchProcessor()
@@ -17,7 +17,7 @@ const processor = new EvmBatchProcessor()
     archive: 'https://eth.archive.subsquid.io',
   })
   .addLog(contractAddress, {
-    filter: [[exo.events["Transfer(address,address,uint256)"].topic]],
+    filter: [[events.Transfer.topic]],
     data: {
       evmLog: {
         topics: true,
@@ -73,9 +73,7 @@ function handleTransfer(
   const { evmLog, transaction, block } = ctx;
   const addr = evmLog.address.toLowerCase()
 
-  const { from, to, tokenId } = exo.events[
-    "Transfer(address,address,uint256)"
-  ].decode(evmLog);
+  const { from, to, tokenId } = events.Transfer.decode(evmLog);
 
   const transfer: TransferData = {
     id: `${transaction.hash}-${addr}-${tokenId.toBigInt()}-${evmLog.index}`,
@@ -117,7 +115,7 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
   );
 
   for (const transferData of transfersData) {
-    const contract = new exo.Contract(
+    const contract = new Contract(
       ctx,
       { height: transferData.block },
       contractAddress
