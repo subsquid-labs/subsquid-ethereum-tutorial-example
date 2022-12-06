@@ -7,13 +7,17 @@ import {
   getOrCreateContractEntity,
 } from "./contract";
 import { Owner, Token, Transfer } from "./model";
-import { events, Contract } from "./abi/exo";
+import { events } from "./abi/exo";
+import { Multicall } from "./abi/multicall";
+import { functions } from "./abi/exo";
+import { chunk, maxBy } from 'lodash'
+import  assert from "assert";
 
 const database = new TypeormDatabase();
 const processor = new EvmBatchProcessor()
   .setBlockRange({ from: 15584000 })
   .setDataSource({
-    chain: process.env.ETHEREUM_MAINNET_WSS,
+    chain: process.env.RPC_ENDPOINT,
     archive: 'https://eth.archive.subsquid.io',
   })
   .addLog(contractAddress, {
@@ -48,6 +52,7 @@ processor.run(database, async (ctx) => {
     }
   }
 
+  ctx.log.info(`Saving ${transfersData.length} transfers`)
   await saveTransfers({
     ...ctx,
     block: ctx.blocks[ctx.blocks.length - 1].header,
@@ -113,13 +118,13 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
       owner,
     ])
   );
-
+  
   for (const transferData of transfersData) {
-    const contract = new Contract(
-      ctx,
-      { height: transferData.block },
-      contractAddress
-    );
+    // const contract = new Contract(
+    //   ctx,
+    //   { height: transferData.block },
+    //   contractAddress
+    // );
 
     let from = owners.get(transferData.from);
     if (from == null) {
@@ -137,18 +142,10 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 
     let token = tokens.get(tokenIdString);
 
-    let tokenURI = "";
-    try {
-      tokenURI = await contract.tokenURI(BigNumber.from(transferData.tokenId)) 
-    } catch (error) {
-      ctx.log.warn(`[API] Error during fetch tokenURI of ${tokenIdString}`);
-      if (error instanceof Error)
-        ctx.log.warn(`${error.message}`);
-    }
     if (token == null) {
       token = new Token({
         id: tokenIdString,
-        uri: tokenURI,
+        //uri: to be set later 
         contract: await getOrCreateContractEntity(ctx.store),
       });
       tokens.set(token.id, token);
@@ -170,7 +167,41 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
     transfers.add(transfer);
   }
 
+  const promises: Promise<unknown>[] = []
+
+  async function extractURIs(transferDataChunk: TransferData[]) {
+    assert(transferDataChunk.length > 0)
+    const maxHeight = maxBy(transferDataChunk, t => t.block)!.block; 
+    // query the multicall contract at the max height of the chunk
+    const multicall = new Multicall(ctx, {height: maxHeight}, '0x5ba1e12693dc8f9c48aad8770482f4739beed696')
+  
+    const results = await multicall.tryAggregate(functions.tokenURI, transferDataChunk.map(t => [contractAddress, [BigNumber.from(t.tokenId)]]));
+
+    results.forEach((res, i) => {
+      let t = tokens.get(transferDataChunk[i].tokenId.toString());
+      if (t) {
+        let uri = '';
+        if (res.success) {
+          uri = <string>res.value;
+        } else if (res.returnData) {
+          uri = <string>functions.tokenURI.tryDecodeResult(res.returnData) || '';
+        }
+        ctx.log.info(`Decododed URI: ${uri} for ID: ${t.id}`);
+      }
+    });
+  }
+
+  // split into smaller chunks to make sure the multicall call data fits into the limits
+  const chunks = chunk(transfersData, 100)
+  for (let i=0; i < chunks.length; i++) {
+    promises.push(extractURIs(chunks[i]))
+  }
+
+  await Promise.all(promises)
+  
   await ctx.store.save([...owners.values()]);
   await ctx.store.save([...tokens.values()]);
   await ctx.store.save([...transfers]);
+
 }
+
