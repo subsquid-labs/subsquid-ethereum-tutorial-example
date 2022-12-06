@@ -3,8 +3,9 @@ import { EvmBatchProcessor, BlockHandlerContext, LogHandlerContext } from "@subs
 import { In } from "typeorm";
 import { BigNumber } from "ethers";
 import {
-  contractAddress,
+  EXOSAMA_NFT_CONTRACT,
   getOrCreateContractEntity,
+  MULTICALL_ADDRESS,
 } from "./contract";
 import { Owner, Token, Transfer } from "./model";
 import { events } from "./abi/exo";
@@ -20,7 +21,7 @@ const processor = new EvmBatchProcessor()
     chain: process.env.RPC_ENDPOINT,
     archive: 'https://eth.archive.subsquid.io',
   })
-  .addLog(contractAddress, {
+  .addLog(EXOSAMA_NFT_CONTRACT, {
     filter: [[events.Transfer.topic]],
     data: {
       evmLog: {
@@ -39,7 +40,7 @@ processor.run(database, async (ctx) => {
   for (const block of ctx.blocks) {
     for (const item of block.items) {
       if (item.kind === "evmLog") {
-        if (item.address === contractAddress) {
+        if (item.address === EXOSAMA_NFT_CONTRACT) {
           const transfer = handleTransfer({
             ...ctx,
             block: block.header,
@@ -120,11 +121,6 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
   );
   
   for (const transferData of transfersData) {
-    // const contract = new Contract(
-    //   ctx,
-    //   { height: transferData.block },
-    //   contractAddress
-    // );
 
     let from = owners.get(transferData.from);
     if (from == null) {
@@ -167,37 +163,29 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
     transfers.add(transfer);
   }
 
-  const promises: Promise<unknown>[] = []
-
-  async function extractURIs(transferDataChunk: TransferData[]) {
-    assert(transferDataChunk.length > 0)
-    const maxHeight = maxBy(transferDataChunk, t => t.block)!.block; 
-    // query the multicall contract at the max height of the chunk
-    const multicall = new Multicall(ctx, {height: maxHeight}, '0x5ba1e12693dc8f9c48aad8770482f4739beed696')
   
-    const results = await multicall.tryAggregate(functions.tokenURI, transferDataChunk.map(t => [contractAddress, [BigNumber.from(t.tokenId)]]));
 
-    results.forEach((res, i) => {
-      let t = tokens.get(transferDataChunk[i].tokenId.toString());
-      if (t) {
-        let uri = '';
-        if (res.success) {
-          uri = <string>res.value;
-        } else if (res.returnData) {
-          uri = <string>functions.tokenURI.tryDecodeResult(res.returnData) || '';
-        }
-        ctx.log.info(`Decododed URI: ${uri} for ID: ${t.id}`);
+  const maxHeight = maxBy(transfersData, t => t.block)!.block; 
+  // query the multicall contract at the max height of the chunk
+  const multicall = new Multicall(ctx, {height: maxHeight}, MULTICALL_ADDRESS)
+
+  ctx.log.info(`Calling mutlicall for ${transfersData.length} tokens...`)
+  // call in pages of size 100
+  const results = await multicall.tryAggregate(functions.tokenURI, transfersData.map(t => [EXOSAMA_NFT_CONTRACT, [BigNumber.from(t.tokenId)]] as [string, any[]]), 100);
+
+  results.forEach((res, i) => {
+    let t = tokens.get(transfersData[i].tokenId.toString());
+    if (t) {
+      let uri = '';
+      if (res.success) {
+        uri = <string>res.value;
+      } else if (res.returnData) {
+        uri = <string>functions.tokenURI.tryDecodeResult(res.returnData) || '';
       }
-    });
-  }
-
-  // split into smaller chunks to make sure the multicall call data fits into the limits
-  const chunks = chunk(transfersData, 100)
-  for (let i=0; i < chunks.length; i++) {
-    promises.push(extractURIs(chunks[i]))
-  }
-
-  await Promise.all(promises)
+    }
+  });
+  ctx.log.info(`Done`);
+  
   
   await ctx.store.save([...owners.values()]);
   await ctx.store.save([...tokens.values()]);
