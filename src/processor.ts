@@ -3,20 +3,25 @@ import { EvmBatchProcessor, BlockHandlerContext, LogHandlerContext } from "@subs
 import { In } from "typeorm";
 import { BigNumber } from "ethers";
 import {
-  contractAddress,
+  EXOSAMA_NFT_CONTRACT,
   getOrCreateContractEntity,
+  MULTICALL_ADDRESS,
 } from "./contract";
 import { Owner, Token, Transfer } from "./model";
-import { events, Contract } from "./abi/exo";
+import { events } from "./abi/exo";
+import { Multicall } from "./abi/multicall";
+import { functions } from "./abi/exo";
+import { chunk, maxBy } from 'lodash'
+import  assert from "assert";
 
 const database = new TypeormDatabase();
 const processor = new EvmBatchProcessor()
   .setBlockRange({ from: 15584000 })
   .setDataSource({
-    chain: process.env.ETHEREUM_MAINNET_WSS,
+    chain: process.env.RPC_ENDPOINT,
     archive: 'https://eth.archive.subsquid.io',
   })
-  .addLog(contractAddress, {
+  .addLog(EXOSAMA_NFT_CONTRACT, {
     filter: [[events.Transfer.topic]],
     data: {
       evmLog: {
@@ -35,7 +40,7 @@ processor.run(database, async (ctx) => {
   for (const block of ctx.blocks) {
     for (const item of block.items) {
       if (item.kind === "evmLog") {
-        if (item.address === contractAddress) {
+        if (item.address === EXOSAMA_NFT_CONTRACT) {
           const transfer = handleTransfer({
             ...ctx,
             block: block.header,
@@ -48,6 +53,7 @@ processor.run(database, async (ctx) => {
     }
   }
 
+  ctx.log.info(`Saving ${transfersData.length} transfers`)
   await saveTransfers({
     ...ctx,
     block: ctx.blocks[ctx.blocks.length - 1].header,
@@ -113,13 +119,8 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
       owner,
     ])
   );
-
+  
   for (const transferData of transfersData) {
-    const contract = new Contract(
-      ctx,
-      { height: transferData.block },
-      contractAddress
-    );
 
     let from = owners.get(transferData.from);
     if (from == null) {
@@ -137,18 +138,10 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
 
     let token = tokens.get(tokenIdString);
 
-    let tokenURI = "";
-    try {
-      tokenURI = await contract.tokenURI(BigNumber.from(transferData.tokenId)) 
-    } catch (error) {
-      ctx.log.warn(`[API] Error during fetch tokenURI of ${tokenIdString}`);
-      if (error instanceof Error)
-        ctx.log.warn(`${error.message}`);
-    }
     if (token == null) {
       token = new Token({
         id: tokenIdString,
-        uri: tokenURI,
+        //uri: to be set later 
         contract: await getOrCreateContractEntity(ctx.store),
       });
       tokens.set(token.id, token);
@@ -170,7 +163,33 @@ async function saveTransfers(ctx: BlockHandlerContext<Store>, transfersData: Tra
     transfers.add(transfer);
   }
 
+  
+
+  const maxHeight = maxBy(transfersData, t => t.block)!.block; 
+  // query the multicall contract at the max height of the chunk
+  const multicall = new Multicall(ctx, {height: maxHeight}, MULTICALL_ADDRESS)
+
+  ctx.log.info(`Calling mutlicall for ${transfersData.length} tokens...`)
+  // call in pages of size 100
+  const results = await multicall.tryAggregate(functions.tokenURI, transfersData.map(t => [EXOSAMA_NFT_CONTRACT, [BigNumber.from(t.tokenId)]] as [string, any[]]), 100);
+
+  results.forEach((res, i) => {
+    let t = tokens.get(transfersData[i].tokenId.toString());
+    if (t) {
+      let uri = '';
+      if (res.success) {
+        uri = <string>res.value;
+      } else if (res.returnData) {
+        uri = <string>functions.tokenURI.tryDecodeResult(res.returnData) || '';
+      }
+    }
+  });
+  ctx.log.info(`Done`);
+  
+  
   await ctx.store.save([...owners.values()]);
   await ctx.store.save([...tokens.values()]);
   await ctx.store.save([...transfers]);
+
 }
+
