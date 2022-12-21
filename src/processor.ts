@@ -11,8 +11,7 @@ import { Owner, Token, Transfer } from "./model";
 import { events } from "./abi/exo";
 import { Multicall } from "./abi/multicall";
 import { functions } from "./abi/exo";
-import { chunk, maxBy } from 'lodash'
-import  assert from "assert";
+import { maxBy } from 'lodash';
 
 const database = new TypeormDatabase();
 const processor = new EvmBatchProcessor()
