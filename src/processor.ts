@@ -11,14 +11,15 @@ import { Owner, Token, Transfer } from "./model";
 import { events } from "./abi/exo";
 import { Multicall } from "./abi/multicall";
 import { functions } from "./abi/exo";
-import { maxBy } from 'lodash';
+import { maxBy } from 'lodash'
+import { lookupArchive } from "@subsquid/archive-registry";
 
 const database = new TypeormDatabase();
 const processor = new EvmBatchProcessor()
   .setBlockRange({ from: 15584000 })
   .setDataSource({
-    chain: process.env.RPC_ENDPOINT,
-    archive: 'https://eth.archive.subsquid.io',
+    chain: process.env.RPC_ENDPOINT || 'https://rpc.ankr.com/eth',
+    archive: lookupArchive('eth-mainnet'),
   })
   .addLog(EXOSAMA_NFT_CONTRACT, {
     filter: [[events.Transfer.topic]],
