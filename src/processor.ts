@@ -54,10 +54,12 @@ processor.run(database, async (ctx) => {
   }
 
   ctx.log.info(`Saving ${transfersData.length} transfers`)
-  await saveTransfers({
-    ...ctx,
-    block: ctx.blocks[ctx.blocks.length - 1].header,
-  }, transfersData);
+  if(transfersData.length>0) {
+    await saveTransfers({
+      ...ctx,
+      block: ctx.blocks[ctx.blocks.length - 1].header,
+    }, transfersData);
+  }
 });
 
 type TransferData = {
